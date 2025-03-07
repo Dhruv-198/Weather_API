@@ -12,11 +12,9 @@ const pressure = document.querySelector('.pressure');
 const weatherInfo = document.querySelector('.weather-info');
 const loadingSection = document.querySelector('.loading');
 const errorMessage = document.querySelector('.error-message');
-const forecast = document.querySelector('.forecast');
 
 // OpenWeatherMap API key
 const apiKey = '41ec2eb09552bd5222566a3e340a791a'; // Replace with your actual API key
-
 
 // Function to fetch weather data from OpenWeatherMap API
 function fetchWeatherData() {
@@ -59,69 +57,6 @@ function updateWeatherUI(data) {
     windSpeed.textContent = `${wind.speed} km/h`;
     humidity.textContent = `${main.humidity}%`;
     pressure.textContent = `${main.pressure} hPa`;
-
-    // Fetch and update forecast data
-    updateForecast(data.coord.lat, data.coord.lon);
-}
-
-// Function to fetch and display weather forecast
-// Function to fetch and display daily weather forecast
-// Function to fetch and display daily weather forecast
-function updateForecast(lat, lon) {
-    const forecastApiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
-
-    fetch(forecastApiUrl)
-        .then(response => response.json())
-        .then(data => {
-            forecast.innerHTML = ''; // Clear previous forecast data
-
-            const dailyForecasts = {};
-
-            // Loop through forecast data to get only one forecast per day
-            data.list.forEach(item => {
-                const date = new Date(item.dt * 1000);
-                const formattedDate = date.toLocaleDateString('en-GB', { day: 'numeric', month: 'long' });
-
-                if (!dailyForecasts[formattedDate]) {
-                    dailyForecasts[formattedDate] = item;
-                }
-            });
-
-            // Get the first five unique days
-            const forecastDays = Object.values(dailyForecasts).slice(0, 5);
-
-            forecastDays.forEach(item => {
-                const date = new Date(item.dt * 1000);
-                const dayWithSuffix = getOrdinalDate(date); // Convert to "3rd March", "4th March" format
-
-                const forecastItem = document.createElement('div');
-                forecastItem.classList.add('forecast-item');
-
-                // Populate forecast item HTML
-                forecastItem.innerHTML = `
-                    <div class="forecast-day">${dayWithSuffix}</div>
-                    <div class="forecast-icon">
-                        <i class="${getWeatherIcon(item.weather[0].main)}"></i>
-                    </div>
-                    <div class="forecast-temp">${item.main.temp}°C</div>
-                `;
-
-                forecast.appendChild(forecastItem); // Append forecast item to container
-            });
-        });
-}
-
-// Function to get date with ordinal suffix (e.g., "3rd March", "4th March")
-function getOrdinalDate(date) {
-    const day = date.getDate();
-    const month = date.toLocaleString('en-GB', { month: 'long' });
-
-    let suffix = 'th';
-    if (day === 1 || day === 21 || day === 31) suffix = 'st';
-    else if (day === 2 || day === 22) suffix = 'nd';
-    else if (day === 3 || day === 23) suffix = 'rd';
-
-    return `${day}${suffix} ${month}`;
 }
 
 // Event listener for 'Enter' key press in input field
