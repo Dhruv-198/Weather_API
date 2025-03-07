@@ -17,8 +17,14 @@ const errorMessage = document.querySelector('.error-message');
 const apiKey = '41ec2eb09552bd5222566a3e340a791a'; // Replace with your actual API key
 
 // Function to fetch weather data from OpenWeatherMap API
+// Function to fetch weather data from OpenWeatherMap API
 function fetchWeatherData() {
-    const city = inputValue.value; // Get user input (city name)
+    const city = inputValue.value.trim(); // Get user input (trim any whitespace)
+
+    if (!city) return; // Prevent empty searches
+
+    // Hide error message before making a new request
+    errorMessage.style.display = 'none';
 
     // Construct API URL
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
@@ -33,6 +39,7 @@ function fetchWeatherData() {
             updateWeatherUI(data); // Update UI with retrieved data
         })
         .catch(error => {
+            weatherInfo.style.display = 'none'; // Hide weather info
             errorMessage.style.display = 'block'; // Show error message
             console.error(error);
         });
@@ -43,13 +50,16 @@ function updateWeatherUI(data) {
     loadingSection.style.display = 'none'; // Hide loading indicator
     weatherInfo.style.display = 'block'; // Show weather information
 
+    // Hide error message when valid city is found
+    errorMessage.style.display = 'none';
+
     // Extract necessary data from API response
-    const { name, main, weather, wind, dt } = data;
+    const { name, main, weather, wind, dt, sys } = data;
     const weatherData = weather[0]; // Get first weather object
     const date = new Date(dt * 1000); // Convert timestamp to date
 
     // Update UI elements with retrieved data
-    locationElement.textContent = `${name}, ${data.sys.country}`;
+    locationElement.textContent = `${name}, ${sys.country}`;
     dateTime.textContent = `${date.toDateString()}, ${date.toLocaleTimeString()}`;
     temp.textContent = `${main.temp}°C`;
     weatherIcon.className = getWeatherIcon(weatherData.main);
@@ -58,6 +68,7 @@ function updateWeatherUI(data) {
     humidity.textContent = `${main.humidity}%`;
     pressure.textContent = `${main.pressure} hPa`;
 }
+
 
 // Event listener for 'Enter' key press in input field
 inputValue.addEventListener('keydown', (event) => {
