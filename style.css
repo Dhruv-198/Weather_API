@@ -170,57 +170,11 @@ body {
     animation: spin 1s linear infinite;
 }
 
-/* Keyframes for loading animation */
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
 /* Error message styling */
 .error-message {
     display: none;
     color: #ff6b6b;
     text-align: center;
     margin-top: 10px;
-    font-size: 14px;
-}
-
-/* Forecast section - Upcoming weather details */
-.forecast {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    margin-top: 20px;
-    padding: 10px 0;
-}
-
-/* Forecast item container */
-.forecast-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px;
-    min-width: 60px;
-}
-
-/* Day label */
-.forecast-day {
-    font-size: 12px;
-    margin-bottom: 5px;
-}
-
-/* Weather icon for forecast */
-.forecast-icon {
-    font-size: 18px;
-    color: #4cc9f0;
-    margin-bottom: 5px;
-}
-
-/* Forecast temperature */
-.forecast-temp {
     font-size: 14px;
 }
