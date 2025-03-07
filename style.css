@@ -1,0 +1,226 @@
+/* Global Styles - Reset default margin, padding, and enable border-box sizing */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styling - Full screen centered layout with background image and gradient overlay */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                url('https://images.unsplash.com/photo-1550507894-975103845538?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+}
+
+/* Main container - Centered card with glassmorphism effect */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    max-width: 420px;
+    margin: 1em;
+    padding: 2em;
+    border-radius: 20px;
+    background: rgba(0, 0, 0, 0.75);
+    color: white;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Search box - Input and button styling */
+.search-box {
+    position: relative;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.search-box input {
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: 12px 50px 12px 20px;
+    border-radius: 30px;
+    color: #212121;
+    background: rgba(255, 255, 255, 0.9);
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+}
+
+.search-box button {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 50px;
+    border: none;
+    border-radius: 0 30px 30px 0;
+    background: #4361ee;
+    color: white;
+    cursor: pointer;
+}
+
+/* Weather information section */
+.weather-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+}
+
+/* Location name */
+.location {
+    font-size: 24px;
+    margin-bottom: 10px;
+    font-weight: 500;
+    text-align: center;
+}
+
+/* Date and Time */
+.date-time {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 20px;
+}
+
+/* Temperature Display */
+.temp {
+    font-size: 64px;
+    font-weight: 600;
+    margin: 10px 0;
+}
+
+/* Weather icon */
+.weather-icon {
+    font-size: 38px;
+    margin: 10px 0;
+    color: #4cc9f0;
+}
+
+/* Weather Condition Text */
+.weather-condition {
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+/* Additional weather details (humidity, wind speed, etc.) */
+.details {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Column structure for additional details */
+.col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 10px;
+}
+
+/* Icons for details */
+.col-icon {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #4cc9f0;
+}
+
+/* Data text styling */
+.col-data {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+/* Labels for details */
+.col-label {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Loading animation */
+.loading {
+    display: none;
+    text-align: center;
+    padding: 20px;
+}
+
+.spinner {
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top: 4px solid #4cc9f0;
+    width: 40px;
+    height: 40px;
+    margin: 0 auto 15px;
+    animation: spin 1s linear infinite;
+}
+
+/* Keyframes for loading animation */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Error message styling */
+.error-message {
+    display: none;
+    color: #ff6b6b;
+    text-align: center;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+/* Forecast section - Upcoming weather details */
+.forecast {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 20px;
+    padding: 10px 0;
+}
+
+/* Forecast item container */
+.forecast-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    min-width: 60px;
+}
+
+/* Day label */
+.forecast-day {
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+/* Weather icon for forecast */
+.forecast-icon {
+    font-size: 18px;
+    color: #4cc9f0;
+    margin-bottom: 5px;
+}
+
+/* Forecast temperature */
+.forecast-temp {
+    font-size: 14px;
+}
